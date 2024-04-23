@@ -20,17 +20,18 @@ def parse_response(response):
     for slide in slides:
         lines = slide.split('\n')
         title_line = lines[0]
-        if ': ' in title_line:
-            title = title_line.split(': ', 1)[1]  # Extract the title after 'Slide X: '
-        else:
-            title = title_line
-        content_lines = [line for line in lines[1:] if line != 'Content:']  # Skip line if it is 'Content:'
-        content = '\n'.join(content_lines)  # Join the lines to form the content
+        title = title_line.split(': ', 1)[1] if ': ' in title_line else title_line
+        content_lines = [line for line in lines[1:] if line.strip() != 'Content:']
+        content = '\n'.join(content_lines)
         # Extract the keyword from the line that starts with 'Keyword:'
-        keyword_line = [line for line in lines if 'Keyword:' or 'Keywords:' in line][0]
-        keyword = keyword_line.split(': ', 1)[1]
+        keyword_line = next((line for line in lines if 'Keyword:' in line or 'Keywords:' in line), None)
+        if keyword_line:
+            keyword = keyword_line.split(': ', 1)[1]
+        else:
+            keyword = "Unknown"  # Default or error handling
         slides_content.append({'title': title, 'content': content, 'keyword': keyword})
     return slides_content
+
 
 
 def search_pexels_images(keyword):
