@@ -19,17 +19,15 @@ def parse_response(response):
     slides = response.split('\n\n')
     slides_content = []
     for slide in slides:
-        lines = slide.split('\n')
+        lines = [line for line in slide.split('\n') if line.strip()]
         title_line = lines[0]
         title = title_line.split(': ', 1)[1] if ': ' in title_line else title_line
         content_lines = [line for line in lines[1:] if line.strip() != 'Content:']
         content = '\n'.join(content_lines)
         # Extract the keyword from the line that starts with 'Keyword:'
-        keyword_line = next((line for line in lines if 'Keyword:' in line or 'Keywords:' in line), None)
-        if keyword_line:
-            keyword = keyword_line.split(': ', 1)[1]
-        else:
-            keyword = "Unknown"  # Default or error handling
+
+        keyword_line = next((line for line in lines if 'Keyword:' in line), "Keyword: Unknown")
+        keyword = keyword_line.split(': ', 1)[1] if len(keyword_line.split(': ', 1)) > 1 else "Unknown"
         slides_content.append({'title': title, 'content': content, 'keyword': keyword})
     return slides_content
 

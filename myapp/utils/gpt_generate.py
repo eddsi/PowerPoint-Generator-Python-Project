@@ -20,9 +20,7 @@ def chat_development(user_message):
 def build_conversation(user_message):
     return [
         {"role": "system",
-         "content": "You are an assistant that gives the idea for PowerPoint presentations. When answering, give the user the summarized content for each slide based on the number of slide. "
-                    "And the format of the answer must be Slide X(the number of the slide): {title of the content} /n Content: /n content with some bullet points."
-                    "Keyword: /n Give the most important keyword(within two words) that represents the slide for each one"},
+         "content": "你是一个提供幻灯片演示想法的助手。回答时，请根据幻灯片的数量为每张幻灯片提供总结内容。答案的格式必须是“Slide X（幻灯片编号）：{内容标题} /n Content：/n 带有一些要点的内容。”“Keyword：/n 提供代表每张幻灯片的最重要的关键词（两个词以内）。”"},
         {"role": "user", "content": user_message}
     ]
 
