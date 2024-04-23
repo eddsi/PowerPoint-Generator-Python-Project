@@ -1,14 +1,15 @@
 import os
-from flask import Flask, render_template, url_for, flash, redirect, request, send_from_directory, abort, jsonify
+
+from dotenv import load_dotenv
+from flask import Flask, render_template, url_for, flash, redirect, request, send_from_directory, abort
+from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
-from forms import RegistrationForm, LoginForm
-from flask_bcrypt import Bcrypt
 from database import db
+from forms import RegistrationForm, LoginForm
 from models import User
 from utils.gpt_generate import chat_development
 from utils.text_pp import parse_response, create_ppt
-from dotenv import load_dotenv
 
 load_dotenv()  # This loads the .env file
 
@@ -17,7 +18,6 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 bcrypt = Bcrypt(app)
 db.init_app(app)
-
 
 # Configure Flask-Login
 login_manager = LoginManager()
@@ -71,7 +71,6 @@ def login():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form, user=current_user)
-
 
 
 @app.route('/logout')

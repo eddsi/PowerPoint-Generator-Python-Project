@@ -11,8 +11,8 @@ function hideModal() {
 }
 
 // Event listener for the "Generate" button
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('generate-button').addEventListener('click', function(e) {
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('generate-button').addEventListener('click', function (e) {
         e.preventDefault();  // Prevent the default form submission
         showModal();  // Show the modal
 
@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();  // This assumes the server will return JSON
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();  // This assumes the server will return JSON
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
 });
 

@@ -22,16 +22,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {% if title %}
-    <title>PP Generators - {{ title }}</title>
+        <title>PP Generators - {{ title }}</title>
     {% else %}
-    <title>PP Generators</title>
+        <title>PP Generators</title>
     {% endif %}
 </head>
 <body>
 <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel">
         <div class="container">
-            <a class="navbar-brand mr-4" href="/"><img id="main-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            <a class="navbar-brand mr-4" href="/"><img id="main-logo"
+                                                       src="{{ url_for('static', filename='img/logo.png') }}"
+                                                       alt="Logo">
                 PowerPoint Generators</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,13 +42,13 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav">
                     {% if current_user.is_authenticated %}
-                    <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
-                    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-                    <div class="navbar-nav">
-                        {% else %}
+                        <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+                        <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        <div class="navbar-nav">
+                    {% else %}
                         <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
                         <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-                        {% endif %}
+                    {% endif %}
                     </div>
                 </div>
             </div>
@@ -57,8 +59,11 @@
 <footer class="footer">
     <div class="copyright">
         <h3>Original author: Hina Ota</h3>
-        <p>This project is open source and available under the <a href="https://github.com/otahina/PowerPoint-Generator-Python-Project/blob/main/LICENSE">MIT License</a>.</p>
-        <p>Find the source code on <a href="https://github.com/otahina/PowerPoint-Generator-Python-Project.git">GitHub</a>.</p>
+        <p>This project is open source and available under the <a
+                href="https://github.com/otahina/PowerPoint-Generator-Python-Project/blob/main/LICENSE">MIT License</a>.
+        </p>
+        <p>Find the source code on <a
+                href="https://github.com/otahina/PowerPoint-Generator-Python-Project.git">GitHub</a>.</p>
     </div>
 </footer>
 
