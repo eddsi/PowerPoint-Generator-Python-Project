@@ -90,10 +90,7 @@ def generate():
         presenter_name = request.form.get('presenter_name')
         insert_image = 'insert_image' in request.form
 
-        user_message = f"I want you to come up with the idea for the PowerPoint. The number of slides is {number_of_slide}. " \
-                       f"The content is: {user_text}.The title of content for each slide must be unique, " \
-                       f"and extract the most important keyword within two words for each slide. Summarize the content for each slide. "
-
+        user_message = f"我希望你来想出幻灯片的构思。幻灯片的数量是 {number_of_slide}。内容为：{user_text}。每张幻灯片的内容标题必须是唯一的，并从每张幻灯片中提取最重要的关键词，关键词数量控制在两个以内。请为每张幻灯片总结内容。"
         assistant_response = chat_development(user_message)
         # Check the response (for debug)
         print(f"Assistant Response:\n{assistant_response}")
